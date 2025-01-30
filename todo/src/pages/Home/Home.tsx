@@ -1,33 +1,25 @@
-import { useState } from "react";
 import { AddTask } from "../../features/add-task/ui";
 import { TaskList } from "../../widgets/task-list";
-import { format } from "date-fns";
+import { useDateSelector } from "../../features/date-selector/model";
+import { DateSelector } from "../../features/date-selector/ui";
 
 export const Home = () => {
-  const [selectedDate, setSelectedDate] = useState(
-    format(new Date(), "yyyy-MM-dd")
-  );
+  const { selectedDate, setSelectedDate } = useDateSelector();
 
   return (
-    <div className="flex flex-col items-center p-6">
-      <h1 className="text-3xl font-bold mb-6">Мои задачи</h1>
+    <div className="flex flex-col items-center p-6 bg-gray-100 min-h-screen">
+      <h1 className="text-4xl font-bold mb-8 ">Мои задачи</h1>
 
-      <div className="mb-6">
-        <label htmlFor="date" className="block text-lg font-medium mb-2">Выберите дату</label>
-        <input
-          id="date"
-          type="date"
-          value={selectedDate}
-          onChange={(e) => setSelectedDate(e.target.value)}
-          className="border"
-        />
-      </div>
+      <DateSelector
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
+      />
 
-      <div className="mb-6 w-full max-w-md">
+      <div className="mb-6 w-full max-w-lg bg-white p-4 rounded-md text-center shadow-md">
         <AddTask date={selectedDate} />
       </div>
 
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-lg bg-white p-4 rounded-md shadow-md">
         <TaskList date={selectedDate} />
       </div>
     </div>

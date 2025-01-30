@@ -23,5 +23,22 @@ export const taskActions = {
     }));
     saveTasksToLocalStorage();
   },
-};
 
+  updateTask: (taskId: string, newText: string) => {
+    taskStore.setState((prev) => ({
+      tasks: prev.tasks.map((task) =>
+        task.id === taskId ? { ...task, text: newText } : task
+      ),
+    }));
+    saveTasksToLocalStorage();
+  },
+
+  toggleTaskCompletion: (taskId: string) => {
+    taskStore.setState((prev) => ({
+      tasks: prev.tasks.map((task) =>
+        task.id === taskId ? { ...task, completed: !task.completed } : task
+      ),
+    }));
+    saveTasksToLocalStorage();
+  },
+};
