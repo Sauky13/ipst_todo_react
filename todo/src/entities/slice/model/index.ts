@@ -1,22 +1,9 @@
-import { Store } from "@tanstack/react-store";
-
-export interface Task {
-  id: string;
-  text: string;
-  date: string; 
-  completed: boolean;
-}
-
-
-export const taskStore = new Store<{ tasks: Task[] }>({
-  tasks: JSON.parse(localStorage.getItem("tasks") || "[]"), 
-});
-
+import { taskStore } from "../../task-store";
+import { Task } from "../../task-store";
 
 const saveTasksToLocalStorage = () => {
   localStorage.setItem("tasks", JSON.stringify(taskStore.state.tasks));
 };
-
 
 export const taskActions = {
   addTask: (text: string, date: string) => {
@@ -30,5 +17,11 @@ export const taskActions = {
     saveTasksToLocalStorage();
   },
 
- 
+  deleteTask: (taskId: string) => {
+    taskStore.setState((prev) => ({
+      tasks: prev.tasks.filter((task) => task.id !== taskId),
+    }));
+    saveTasksToLocalStorage();
+  },
 };
+

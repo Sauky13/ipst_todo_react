@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { AddTask } from "../AddTask";
-import { TaskList } from "../../widgets/TaskList/TaskList";
+import { AddTask } from "../../features/add-task/ui";
+import { TaskList } from "../../widgets/task-list";
 import { format } from "date-fns";
 
 export const Home = () => {
