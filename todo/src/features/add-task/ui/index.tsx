@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAddTask } from "../../../entities/to-do/create";
+import { useAddTask } from "../../../entities/slice/to-do/create/use-case";
 
 export const AddTask = ({ date }: { date: string }) => {
   const [text, setText] = useState("");

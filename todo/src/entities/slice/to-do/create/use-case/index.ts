@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { taskActions } from "../../slice/model/index";
+import { taskActions } from "../../../model";
 
 const addTask = async ({ text, date }: { text: string; date: string }) => {
   return new Promise<void>((resolve) => {
